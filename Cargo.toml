@@ -1,0 +1,27 @@
+[package]
+name = "stock_pipeline"
+version = "0.1.0"
+edition = "2021"
+build = "build.rs"
+
+[dependencies]
+prost = "0.12"
+prost-types = "0.12"
+csv = "1"
+serde = { version = "1", features = ["derive"] }
+wide = "0.7"
+rayon = "1"
+rustc-hash = "2.1.2"
+memmap2 = "0.9.10"
+fast-float = "0.2.0"
+chrono = "0.4"
+
+[build-dependencies]
+prost-build = "0.12"
+
+[dev-dependencies]
+criterion = { version = "0.5", features = ["html_reports"] }
+
+[[bench]]
+name = "pipeline_bench"
+harness = false
