@@ -1,4 +1,5 @@
-//! Streaming reader implementation for length-prefixed protobuf stock records.
+//! This module provides functionality to read length-prefixed protobuf records from a file.
+
 // use std::fs::File;
 // use std::io::{BufReader, Read};
 
@@ -55,16 +56,19 @@
 //     Ok(stocks)      //hand teh entire lake to the caller
 // }
 
+
+
+
 // streaming reader implementation
 
-// The caller provides record handling; the reader drives the loop.
+// the main function and aggregation loop, with the streaming reader in place of the in-memory reader
 
 use crate::pb::stock::Stock;
 use prost::Message;
 use std::fs::File;
 use std::io::{BufReader, Read};
 
-/// Read a length-prefixed protobuf file and invoke `on_record` for each decoded stock record.
+/// Reads length-prefixed protobuf records from the given file path, invoking the provided callback for each record.
 pub fn read_protobuf_streaming<F>(
     path: &str,
     mut on_record: F,
